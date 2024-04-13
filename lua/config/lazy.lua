@@ -29,7 +29,7 @@ require("lazy").setup({
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
-        "gzip",
+        -- "gzip", -- Debian needs gz file.  So don't disable
         -- "matchit",
         -- "matchparen",
         -- "netrwPlugin",
