@@ -1,0 +1,67 @@
+-- Additional plugin introduced by osamu
+-- Base on https://github.com/pysan3/Norg-Tutorial/blob/main/norg_tutorial.md
+return {
+  -- neorg
+  {
+    "nvim-neorg/neorg",
+    ft = "norg",
+    cmd = "Neorg",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-cmp",
+      "nvim-lua/plenary.nvim",
+    },
+    build = ":Neorg sync-parsers",
+    -- lazy adds:
+    --   config = function(_, opts)
+    --     require("<plugin>").setup(opts)
+    --   end
+    opts = {
+      load = {
+        ["core.defaults"] = {},
+        ["core.completion"] = {
+          config = {
+            engine = "nvim-cmp",
+            name = "[Norg]"
+          },
+        },
+        ["core.integrations.nvim-cmp"] = {},
+        ["core.concealer"] = {
+          config = { icon_preset = "diamond" },
+        },
+        ["core.export"] = {},
+        ["core.keybinds"] = {
+          -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
+          config = {
+            default_keybinds = true,
+            neorg_leader = "<leader>n",
+          },
+        },
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              notes = "~/Documents/notes",
+            },
+            default_workspace = "notes",
+          },
+        },
+      }
+    }
+  },
+  -- which-key
+  {
+    "folke/which-key.nvim",
+    opts = {
+      defaults = {
+        mode = { "n", "v" },
+        ["<leader>n"] = { name = "+norg" },
+        ["<leader>ni"] = { name = "+insert" },
+        ["<leader>nl"] = { name = "+list" },
+        ["<leader>nm"] = { name = "+mode" },
+        ["<leader>nn"] = { name = "+note" },
+        ["<leader>nt"] = { name = "+task" },
+      },
+    },
+  },
+}

@@ -1,0 +1,15 @@
+-- Since this doesn't have .lua as extension, this is not used.
+-- This is possible addition to work with large C code base which I don't need.
+return {
+  -- For old school code navigation. With cscope support for Neovim 0.9+.
+  { "dhananjaylatkar/cscope_maps.nvim",
+    config = function()
+      require('cscope_maps').setup({
+        disable_maps = false, -- true disables my keymaps, only :Cscope will be loaded
+        cscope = {
+          db_file = "./ncscope.out", -- location of cscope db file
+        },
+      })
+    end,
+  },
+}

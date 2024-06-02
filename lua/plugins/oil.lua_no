@@ -1,0 +1,9 @@
+-- Additional plugin introduced by osamu
+-- Base on https://github.com/stevearc/oil.nvim
+--   This is mentioned in neorg tutorial 2
+return {
+  'stevearc/oil.nvim',
+  opts = {},
+  -- Optional dependencies
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+}
