@@ -133,6 +133,22 @@ map("n", "<leader>uu", function () end, { desc = "which_key_ignore" }) -- hidden
 -- LazyExtras '<leader>ux' make these accessible
 map("n", "<leader>ux", "<cmd> LazyExtras <cr>", { desc = "Lazy Extras" })
 
+-- Toggle Whitespace_check
+map("n", "<leader>uw", function()
+  local tailing_whitespace0 = [[TailingWhitespaces //]]
+  local tailing_whitespace1 = [[TailingWhitespaces /\s\+\%#\@<!$/]]
+  if vim.g.tailing_whitespace then
+    vim.g.tailing_whitespace = false
+    vim.cmd.match(tailing_whitespace0)
+    vim.notify("Whitespace check = off")
+  else
+    -- default
+    vim.g.tailing_whitespace = true
+    vim.cmd.match(tailing_whitespace1)
+    vim.notify("Whitespace check = on")
+  end
+end, { desc = "Toggle Whitespace chack" })
+
 -- Change foldcolumn
 map("n", "<leader>uz", function()
   if vim.wo.foldcolumn == "0" then

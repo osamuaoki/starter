@@ -10,4 +10,6 @@
 vim.cmd.highlight([[TailingWhitespaces ctermbg=red guibg=red]])
 -- """ \s\+     1 or more whitespace character: <Space> and <Tab>
 -- """ \%#\@<!  Matches with zero width if the cursor position does NOT match.
-vim.cmd.match([[TailingWhitespaces /\s\+\%#\@<!$/]])
+if vim.g.tailing_whitespace then
+  vim.cmd.match([[TailingWhitespaces /\s\+\%#\@<!$/]])
+end

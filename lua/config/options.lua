@@ -59,6 +59,7 @@ vim.opt.smartcase = true
 vim.opt.errorbells = false -- :h 'eb
 vim.opt.visualbell = false -- :h 'vb
 
+vim.g.tailing_whitespace=false
 -- """ Pick "colorscheme" from blue darkblue default delek desert elflord evening
 -- """ habamax industry koehler lunaperche morning murphy pablo peachpuff quiet ron
 -- """ shine slate torte zellner
