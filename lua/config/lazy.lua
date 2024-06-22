@@ -7,6 +7,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Add quicklist support package to RTP
+vim.cmd.packadd { "cfilter", bang = true }
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -23,13 +26,16 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
+  -- Pick "colorscheme" from blue darkblue default delek desert elflord evening
+  -- habamax industry koehler lunaperche morning murphy pablo peachpuff quiet ron
+  -- shine slate torte zellner
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
-        "gzip",
+        -- "gzip", -- Debian needs gz file.  So don't disable
         -- "matchit",
         -- "matchparen",
         -- "netrwPlugin",
