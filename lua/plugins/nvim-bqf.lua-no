@@ -1,0 +1,11 @@
+if true then return {} end
+
+-- Better quickfix window in Neovim, polish old quickfix window.
+-- https://github.com/kevinhwang91/nvim-bqf
+
+-- The list down-selection functionality offered by this is already available
+-- with default install by telescope.nvim.  So this is disabled.
+return {
+  "kevinhwang91/nvim-bqf",
+  ft = "qf",
+}

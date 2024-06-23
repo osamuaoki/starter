@@ -7,9 +7,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Add quicklist support package to RTP
-vim.cmd.packadd { "cfilter", bang = true }
-
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -47,3 +44,7 @@ require("lazy").setup({
     },
   },
 })
+
+-- Load quicklist support package
+vim.cmd.packadd { "cfilter" }
+

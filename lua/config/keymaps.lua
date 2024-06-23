@@ -228,3 +228,23 @@ map("n", "<leader>tY", function()
   LazyVim.terminal({ "python3" })
 end, { desc = "Python REPL (.)" })
 
+-- quickfix/Location List history picker is missing
+-- https://github.com/nvim-telescope/telescope.nvim/issues/1739
+-- https://github.com/kevinhwang91/nvim-bqf (No recent updates)
+-- https://vimways.org/2018/colder-quickfix-lists/ (Vim)
+-- https://github.com/stefandtw/quickfix-reflector.vim
+-- https://github.com/romainl/vim-qf (vim)
+-- https://github.com/bfrg/vim-qf-history (vim9 2 yr old)
+--
+-- Telescope quickfix can perform down-selection.
+-- Until proper solution is found, I will use the folowing
+map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "Quickfix pick" }) -- same as <leader>sq
+map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "Location pick" })   -- same as <leader>sl
+-- map("n", "<leader>xi", vim.cmd.chistory, { desc = "Quickfix older" })  -- odd output
+-- map("n", "<leader>xj", function() vim.cmd.chistory() end, { desc = "Quickfix older" })  -- odd output
+map("n", "<leader>x/", "<cmd>chistory<cr>", {  desc = "Quickfix history" })
+map("n", "<leader>x,", function() vim.cmd.colder() end, { desc = "Quickfix older" })
+map("n", "<leader>x.", function() vim.cmd.cnewer() end, { desc = "Quickfix newer" })
+map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "Location history" })
+map("n", "<leader>x<lt>", function() vim.cmd.lolder() end, { desc = "Location older" }) -- < is not enough
+map("n", "<leader>x>", function() vim.cmd.lnewer() end, { desc = "Location newer" })
