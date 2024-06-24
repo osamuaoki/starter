@@ -233,16 +233,16 @@ end, { desc = "Python REPL (.)" })
 --
 -- Telescope quickfix can perform down-selection.
 -- Until proper solution is found, I will use the folowing
-map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "QfList pick" }) -- same as <leader>sq
-map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "LocList pick" })   -- same as <leader>sl
+map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "Pick from QfList" }) -- same as <leader>sq
+map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "Pick from LocList" })   -- same as <leader>sl
 -- map("n", "<leader>xi", vim.cmd.chistory, { desc = "Quickfix older" })  -- odd output
 -- map("n", "<leader>xj", function() vim.cmd.chistory() end, { desc = "Quickfix older" })  -- odd output
-map("n", "<leader>x/", "<cmd>chistory<cr>", {  desc = "QfList history" })
-map("n", "<leader>x,", vim.cmd.colder, { desc = "QfList Older" })
-map("n", "<leader>x.", vim.cmd.cnewer, { desc = "QfList Newer" })
-map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "LocList history" })
-map("n", "<leader>x<lt>", vim.cmd.lolder, { desc = "LocList Older" }) -- < is not enough
-map("n", "<leader>x>", vim.cmd.lnewer, { desc = "LocList Newer" })
+map("n", "<leader>x/", "<cmd>chistory<cr>", {  desc = "QfList History" })
+map("n", "<leader>x,", vim.cmd.colder, { desc = "Select Older QfList" })
+map("n", "<leader>x.", vim.cmd.cnewer, { desc = "Select Newer QfList" })
+map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "LocList History" })
+map("n", "<leader>x<lt>", vim.cmd.lolder, { desc = "Select Older LocList" }) -- < is not enough
+map("n", "<leader>x>", vim.cmd.lnewer, { desc = "Select Newer LocList" })
 
 if false then  -- Use qf.nvim: https://github.com/ten3roberts/qf.nvim
   local  qf = require('qf')
@@ -257,8 +257,8 @@ if false then  -- Use qf.nvim: https://github.com/ten3roberts/qf.nvim
   map("n", "<leader>xr", function () qf.close('c') end, { desc = "Read QfList" })
   map("n", "<leader>xW", function () qf.close('l') end, { desc = "Write LocList" })
   map("n", "<leader>xR", function () qf.close('l') end, { desc = "Read LocList" })
-  map("n", "[v", function () qf.above('visible') end, { desc = "Previous Visible Q/L Item" })
-  map("n", "]v", function () qf.below('visible') end, { desc = "Next Visible Q/L Item" })
+  --map("n", "[v", function () qf.above('visible') end, { desc = "Previous Visible Q/L Item" })
+  --map("n", "]v", function () qf.below('visible') end, { desc = "Next Visible Q/L Item" })
   map("n", "[q", function () qf.above('c') end, { desc = "Previous QfList Item" })
   map("n", "]q", function () qf.below('c') end, { desc = "Next QfList Item" })
   map("n", "[l", function () qf.above('l') end, { desc = "Previous LocList Item" })
