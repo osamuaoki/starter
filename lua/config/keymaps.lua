@@ -11,15 +11,11 @@ local map = vim.keymap.set
 map("i", "jk", "<esc>", { desc = "Exit insert-mode", remap = true })
 map("t", "jk", "<C-\\><C-n>", { desc = "Exit term-mode" })
 
--- -- Location list (just like quickfix)
--- map("n", "[l", vim.cmd.lprev, { desc = "Previous Location Item" })
--- map("n", "]l", vim.cmd.lnext, { desc = "Next Location list Item" })
-
 -- Dismiss All Notification in normal mode with '<leader>n' as quick alt keymap
 -- Copied from '<leader>un' with desc = "Dismiss All Notifications"
 map("n", "<leader>n", function()
   require("notify").dismiss({ silent = true, pending = true })
-end, { desc = "No notify" })
+end, { desc = "Kill Notify" })
 
 --- Change linenumber (
 map("n", "<leader>ul", function()
@@ -233,37 +229,46 @@ end, { desc = "Python REPL (.)" })
 -- https://github.com/kevinhwang91/nvim-bqf (No recent updates)
 -- https://vimways.org/2018/colder-quickfix-lists/ (Vim)
 -- https://github.com/stefandtw/quickfix-reflector.vim
--- https://github.com/romainl/vim-qf (vim)
 -- https://github.com/bfrg/vim-qf-history (vim9 2 yr old)
 --
 -- Telescope quickfix can perform down-selection.
 -- Until proper solution is found, I will use the folowing
-map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "Quickfix pick" }) -- same as <leader>sq
-map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "Location pick" })   -- same as <leader>sl
+map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "QfList pick" }) -- same as <leader>sq
+map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "LocList pick" })   -- same as <leader>sl
 -- map("n", "<leader>xi", vim.cmd.chistory, { desc = "Quickfix older" })  -- odd output
 -- map("n", "<leader>xj", function() vim.cmd.chistory() end, { desc = "Quickfix older" })  -- odd output
-map("n", "<leader>x/", "<cmd>chistory<cr>", {  desc = "Quickfix history" })
-map("n", "<leader>x,", function() vim.cmd.colder() end, { desc = "Quickfix older" })
-map("n", "<leader>x.", function() vim.cmd.cnewer() end, { desc = "Quickfix newer" })
-map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "Location history" })
-map("n", "<leader>x<lt>", function() vim.cmd.lolder() end, { desc = "Location older" }) -- < is not enough
-map("n", "<leader>x>", function() vim.cmd.lnewer() end, { desc = "Location newer" })
+map("n", "<leader>x/", "<cmd>chistory<cr>", {  desc = "QfList history" })
+map("n", "<leader>x,", function() vim.cmd.colder() end, { desc = "QfList Older" })
+map("n", "<leader>x.", function() vim.cmd.cnewer() end, { desc = "QfList Newer" })
+map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "LocList history" })
+map("n", "<leader>x<lt>", function() vim.cmd.lolder() end, { desc = "LocList Older" }) -- < is not enough
+map("n", "<leader>x>", function() vim.cmd.lnewer() end, { desc = "LocList Newer" })
 
+-- https://github.com/ten3roberts/qf.nvim
+local  qf = require('qf')
+map("n", "<leader>xo", function () qf.open('c') end, { desc = "Open QfList" })
+map("n", "<leader>xc", function () qf.close('c') end, { desc = "Close QfList" })
+map("n", "<leader>xl", function () qf.toggle('c', false) end, { desc = "Toggle QfList" })
+map("n", "<leader>xO", function () qf.open('l') end, { desc = "Open LocList" })
+map("n", "<leader>xC", function () qf.close('l') end, { desc = "Close LocList" })
+map("n", "<leader>xL", function () qf.toggle('l', false) end, { desc = "Toggle LocList" })
 
-map("n", "<leader>xO", function () require'qf'.open('l') end, { desc = "Open location list" })
-map("n", "<leader>xC", function () require'qf'.close('l') end, { desc = "Close location list" })
-map("n", "<leader>xL", function () require'qf'.toggle('l', true) end, { desc = "Toggle location list and stay in current window" })
+map("n", "<leader>xw", function () qf.close('c') end, { desc = "Write QfList" })
+map("n", "<leader>xr", function () qf.close('c') end, { desc = "Read QfList" })
+map("n", "<leader>xW", function () qf.close('l') end, { desc = "Write LocList" })
+map("n", "<leader>xR", function () qf.close('l') end, { desc = "Read LocList" })
 
-map("n", "<leader>xo", function () require'qf'.open('c') end, { desc = "Open quickfix list" })
-map("n", "<leader>xc", function () require'qf'.close('c') end, { desc = "Close quickfix list" })
-map("n", "<leader>xl", function () require'qf'.toggle('c', true) end, { desc = "Toggle quickfix list and stay in current window" })
-
-map("n", "<leader>xJ", function () require'qf'.below('l') end, { desc = "Go to next location list entry from cursor" })
-map("n", "<leader>xK", function () require'qf'.above('l') end, { desc = "Go to previous location list entry from cursor" })
-
-map("n", "<leader>xj", function () require'qf'.below('c') end, { desc = "Go to next quickfix entry from cursor" })
-map("n", "<leader>xk", function () require'qf'.above('c') end, { desc = "Go to previous quickfix entry from cursor" })
-
-map("n", "]Q", function () require'qf'.below('visible') end, { desc = "Go to next entry from cursor in visible list" })
-map("n", "[Q", function () require'qf'.above('visible') end, { desc = "Go to previous entry from cursor in visible list" })
-
+-- Wrappers
+if false then -- Use qf
+map("n", "[v", function () qf.above('visible') end, { desc = "Previous Visible Q/L Item" })
+map("n", "]v", function () qf.below('visible') end, { desc = "Next Visible Q/L Item" })
+map("n", "[q", function () qf.above('c') end, { desc = "Previous QfList Item" })
+map("n", "]q", function () qf.below('c') end, { desc = "Next QfList Item" })
+map("n", "[l", function () qf.above('l') end, { desc = "Previous LocList Item" })
+map("n", "]l", function () qf.below('l') end, { desc = "Next LocList Item" })
+else -- Use native
+map("n", "[q", vim.cmd.cprevious, { desc = "Previous QfList Item" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next QfList Item" })
+map("n", "[l", vim.cmd.lprevious, { desc = "Previous LocList Item" })
+map("n", "]l", vim.cmd.lnext, { desc = "Next LocList Item" })
+end
