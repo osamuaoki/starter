@@ -13,12 +13,13 @@ if vim.g.tailing_whitespace then
   vim.cmd.match([[TailingWhitespaces /\s\+\%#\@<!$/]])
 end
 
--- Display quickfix list upon its creation
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-  callback = function()
-    --vim.cmd([[copen]])  -- basic design
-    vim.cmd([[Trouble qflist open]])  -- with trouble (nice design)
-    --vim.cmd([[Telescope quickfix]])  -- with telescope (UI down-selectable)
-    -- nvim-bqf also provides UI down-selectable feature if installed
-  end,
-})
+-- Let qf.nvim take over
+-- -- Display quickfix list upon its creation
+-- vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+--   callback = function()
+--     --vim.cmd([[copen]])  -- basic design
+--     vim.cmd([[Trouble qflist open]])  -- with trouble (nice design)
+--     --vim.cmd([[Telescope quickfix]])  -- with telescope (UI down-selectable)
+--     -- nvim-bqf also provides UI down-selectable feature if installed
+--   end,
+-- })

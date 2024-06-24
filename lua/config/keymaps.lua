@@ -3,7 +3,7 @@
 -- Add any additional keymaps here
 
 -- DO NOT USE `LazyVim.safe_keymap_set` IN HERE!!
--- use `vim.keymap.set` instead
+-- use`vim.keymap.set` instead
 local map = vim.keymap.set
 
 -- This is simpler than "max397574/better-escape.nvim"
@@ -11,9 +11,9 @@ local map = vim.keymap.set
 map("i", "jk", "<esc>", { desc = "Exit insert-mode", remap = true })
 map("t", "jk", "<C-\\><C-n>", { desc = "Exit term-mode" })
 
--- Location list (just like quickfix)
-map("n", "[l", vim.cmd.lprev, { desc = "Previous Location Item" })
-map("n", "]l", vim.cmd.lnext, { desc = "Next Location list Item" })
+-- -- Location list (just like quickfix)
+-- map("n", "[l", vim.cmd.lprev, { desc = "Previous Location Item" })
+-- map("n", "]l", vim.cmd.lnext, { desc = "Next Location list Item" })
 
 -- Dismiss All Notification in normal mode with '<leader>n' as quick alt keymap
 -- Copied from '<leader>un' with desc = "Dismiss All Notifications"
@@ -248,3 +248,22 @@ map("n", "<leader>x.", function() vim.cmd.cnewer() end, { desc = "Quickfix newer
 map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "Location history" })
 map("n", "<leader>x<lt>", function() vim.cmd.lolder() end, { desc = "Location older" }) -- < is not enough
 map("n", "<leader>x>", function() vim.cmd.lnewer() end, { desc = "Location newer" })
+
+
+map("n", "<leader>xO", function () require'qf'.open('l') end, { desc = "Open location list" })
+map("n", "<leader>xC", function () require'qf'.close('l') end, { desc = "Close location list" })
+map("n", "<leader>xL", function () require'qf'.toggle('l', true) end, { desc = "Toggle location list and stay in current window" })
+
+map("n", "<leader>xo", function () require'qf'.open('c') end, { desc = "Open quickfix list" })
+map("n", "<leader>xc", function () require'qf'.close('c') end, { desc = "Close quickfix list" })
+map("n", "<leader>xl", function () require'qf'.toggle('c', true) end, { desc = "Toggle quickfix list and stay in current window" })
+
+map("n", "<leader>xJ", function () require'qf'.below('l') end, { desc = "Go to next location list entry from cursor" })
+map("n", "<leader>xK", function () require'qf'.above('l') end, { desc = "Go to previous location list entry from cursor" })
+
+map("n", "<leader>xj", function () require'qf'.below('c') end, { desc = "Go to next quickfix entry from cursor" })
+map("n", "<leader>xk", function () require'qf'.above('c') end, { desc = "Go to previous quickfix entry from cursor" })
+
+map("n", "]Q", function () require'qf'.below('visible') end, { desc = "Go to next entry from cursor in visible list" })
+map("n", "[Q", function () require'qf'.above('visible') end, { desc = "Go to previous entry from cursor in visible list" })
+
