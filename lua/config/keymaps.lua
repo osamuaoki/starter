@@ -245,30 +245,28 @@ map("n", "<leader>x<lt>", function() vim.cmd.lolder() end, { desc = "LocList Old
 map("n", "<leader>x>", function() vim.cmd.lnewer() end, { desc = "LocList Newer" })
 
 -- https://github.com/ten3roberts/qf.nvim
-local  qf = require('qf')
-map("n", "<leader>xo", function () qf.open('c') end, { desc = "Open QfList" })
-map("n", "<leader>xc", function () qf.close('c') end, { desc = "Close QfList" })
-map("n", "<leader>xl", function () qf.toggle('c', false) end, { desc = "Toggle QfList" })
-map("n", "<leader>xO", function () qf.open('l') end, { desc = "Open LocList" })
-map("n", "<leader>xC", function () qf.close('l') end, { desc = "Close LocList" })
-map("n", "<leader>xL", function () qf.toggle('l', false) end, { desc = "Toggle LocList" })
-
-map("n", "<leader>xw", function () qf.close('c') end, { desc = "Write QfList" })
-map("n", "<leader>xr", function () qf.close('c') end, { desc = "Read QfList" })
-map("n", "<leader>xW", function () qf.close('l') end, { desc = "Write LocList" })
-map("n", "<leader>xR", function () qf.close('l') end, { desc = "Read LocList" })
-
--- Wrappers
 if false then -- Use qf
-map("n", "[v", function () qf.above('visible') end, { desc = "Previous Visible Q/L Item" })
-map("n", "]v", function () qf.below('visible') end, { desc = "Next Visible Q/L Item" })
-map("n", "[q", function () qf.above('c') end, { desc = "Previous QfList Item" })
-map("n", "]q", function () qf.below('c') end, { desc = "Next QfList Item" })
-map("n", "[l", function () qf.above('l') end, { desc = "Previous LocList Item" })
-map("n", "]l", function () qf.below('l') end, { desc = "Next LocList Item" })
+  local  qf = require('qf')
+  map("n", "<leader>xo", function () qf.open('c') end, { desc = "Open QfList" })
+  map("n", "<leader>xc", function () qf.close('c') end, { desc = "Close QfList" })
+  map("n", "<leader>xl", function () qf.toggle('c', false) end, { desc = "Toggle QfList" })
+  map("n", "<leader>xO", function () qf.open('l') end, { desc = "Open LocList" })
+  map("n", "<leader>xC", function () qf.close('l') end, { desc = "Close LocList" })
+  map("n", "<leader>xL", function () qf.toggle('l', false) end, { desc = "Toggle LocList" })
+
+  map("n", "<leader>xw", function () qf.close('c') end, { desc = "Write QfList" })
+  map("n", "<leader>xr", function () qf.close('c') end, { desc = "Read QfList" })
+  map("n", "<leader>xW", function () qf.close('l') end, { desc = "Write LocList" })
+  map("n", "<leader>xR", function () qf.close('l') end, { desc = "Read LocList" })
+  map("n", "[v", function () qf.above('visible') end, { desc = "Previous Visible Q/L Item" })
+  map("n", "]v", function () qf.below('visible') end, { desc = "Next Visible Q/L Item" })
+  map("n", "[q", function () qf.above('c') end, { desc = "Previous QfList Item" })
+  map("n", "]q", function () qf.below('c') end, { desc = "Next QfList Item" })
+  map("n", "[l", function () qf.above('l') end, { desc = "Previous LocList Item" })
+  map("n", "]l", function () qf.below('l') end, { desc = "Next LocList Item" })
 else -- Use native
-map("n", "[q", vim.cmd.cprevious, { desc = "Previous QfList Item" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next QfList Item" })
-map("n", "[l", vim.cmd.lprevious, { desc = "Previous LocList Item" })
-map("n", "]l", vim.cmd.lnext, { desc = "Next LocList Item" })
+  map("n", "[q", vim.cmd.cprevious, { desc = "Previous QfList Item" })
+  map("n", "]q", vim.cmd.cnext, { desc = "Next QfList Item" })
+  map("n", "[l", vim.cmd.lprevious, { desc = "Previous LocList Item" })
+  map("n", "]l", vim.cmd.lnext, { desc = "Next LocList Item" })
 end
