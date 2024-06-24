@@ -238,21 +238,20 @@ map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "LocList pick" })  
 -- map("n", "<leader>xi", vim.cmd.chistory, { desc = "Quickfix older" })  -- odd output
 -- map("n", "<leader>xj", function() vim.cmd.chistory() end, { desc = "Quickfix older" })  -- odd output
 map("n", "<leader>x/", "<cmd>chistory<cr>", {  desc = "QfList history" })
-map("n", "<leader>x,", function() vim.cmd.colder() end, { desc = "QfList Older" })
-map("n", "<leader>x.", function() vim.cmd.cnewer() end, { desc = "QfList Newer" })
+map("n", "<leader>x,", vim.cmd.colder, { desc = "QfList Older" })
+map("n", "<leader>x.", vim.cmd.cnewer, { desc = "QfList Newer" })
 map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "LocList history" })
-map("n", "<leader>x<lt>", function() vim.cmd.lolder() end, { desc = "LocList Older" }) -- < is not enough
-map("n", "<leader>x>", function() vim.cmd.lnewer() end, { desc = "LocList Newer" })
+map("n", "<leader>x<lt>", vim.cmd.lolder, { desc = "LocList Older" }) -- < is not enough
+map("n", "<leader>x>", vim.cmd.lnewer, { desc = "LocList Newer" })
 
--- https://github.com/ten3roberts/qf.nvim
-if false then -- Use qf
+if false then  -- Use qf.nvim: https://github.com/ten3roberts/qf.nvim
   local  qf = require('qf')
-  map("n", "<leader>xo", function () qf.open('c') end, { desc = "Open QfList" })
+  map("n", "<leader>xq", function () qf.open('c') end, { desc = "Open QfList" })
   map("n", "<leader>xc", function () qf.close('c') end, { desc = "Close QfList" })
-  map("n", "<leader>xl", function () qf.toggle('c', false) end, { desc = "Toggle QfList" })
-  map("n", "<leader>xO", function () qf.open('l') end, { desc = "Open LocList" })
+  --map("n", "<leader>xz", function () qf.toggle('c', false) end, { desc = "Toggle QfList" })
+  map("n", "<leader>xl", function () qf.open('l') end, { desc = "Open LocList" })
   map("n", "<leader>xC", function () qf.close('l') end, { desc = "Close LocList" })
-  map("n", "<leader>xL", function () qf.toggle('l', false) end, { desc = "Toggle LocList" })
+  --map("n", "<leader>xZ", function () qf.toggle('l', false) end, { desc = "Toggle LocList" })
 
   map("n", "<leader>xw", function () qf.close('c') end, { desc = "Write QfList" })
   map("n", "<leader>xr", function () qf.close('c') end, { desc = "Read QfList" })
@@ -265,6 +264,10 @@ if false then -- Use qf
   map("n", "[l", function () qf.above('l') end, { desc = "Previous LocList Item" })
   map("n", "]l", function () qf.below('l') end, { desc = "Next LocList Item" })
 else -- Use native
+  map("n", "<leader>xq", vim.cmd.copen, { desc = "Open QfList" })
+  map("n", "<leader>xc", vim.cmd.cclose, { desc = "Close QfList" })
+  map("n", "<leader>xl", vim.cmd.lopen,{ desc = "Open LocList" })
+  map("n", "<leader>xC", vim.cmd.lclose, { desc = "Close LocList" })
   map("n", "[q", vim.cmd.cprevious, { desc = "Previous QfList Item" })
   map("n", "]q", vim.cmd.cnext, { desc = "Next QfList Item" })
   map("n", "[l", vim.cmd.lprevious, { desc = "Previous LocList Item" })
