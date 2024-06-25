@@ -224,52 +224,21 @@ map("n", "<leader>tY", function()
   LazyVim.terminal({ "python3" })
 end, { desc = "Python REPL (.)" })
 
--- quickfix/Location List history picker is missing
--- https://github.com/nvim-telescope/telescope.nvim/issues/1739
--- https://github.com/kevinhwang91/nvim-bqf (No recent updates)
--- https://vimways.org/2018/colder-quickfix-lists/ (Vim)
--- https://github.com/stefandtw/quickfix-reflector.vim
--- https://github.com/bfrg/vim-qf-history (vim9 2 yr old)
---
 -- Telescope quickfix can perform down-selection.
--- Until proper solution is found, I will use the folowing
-map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "Pick from QfList" }) -- same as <leader>sq
-map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "Pick from LocList" })   -- same as <leader>sl
--- map("n", "<leader>xi", vim.cmd.chistory, { desc = "Quickfix older" })  -- odd output
--- map("n", "<leader>xj", function() vim.cmd.chistory() end, { desc = "Quickfix older" })  -- odd output
-map("n", "<leader>x/", "<cmd>chistory<cr>", {  desc = "QfList History" })
-map("n", "<leader>x,", vim.cmd.colder, { desc = "Select Older QfList" })
-map("n", "<leader>x.", vim.cmd.cnewer, { desc = "Select Newer QfList" })
-map("n", "<leader>x?", "<cmd>lhistory<cr>", { desc = "LocList History" })
-map("n", "<leader>x<lt>", vim.cmd.lolder, { desc = "Select Older LocList" }) -- < is not enough
-map("n", "<leader>x>", vim.cmd.lnewer, { desc = "Select Newer LocList" })
-
-if false then  -- Use qf.nvim: https://github.com/ten3roberts/qf.nvim
-  local  qf = require('qf')
-  map("n", "<leader>xq", function () qf.open('c') end, { desc = "Open QfList" })
-  map("n", "<leader>xc", function () qf.close('c') end, { desc = "Close QfList" })
-  --map("n", "<leader>xz", function () qf.toggle('c', false) end, { desc = "Toggle QfList" })
-  map("n", "<leader>xl", function () qf.open('l') end, { desc = "Open LocList" })
-  map("n", "<leader>xC", function () qf.close('l') end, { desc = "Close LocList" })
-  --map("n", "<leader>xZ", function () qf.toggle('l', false) end, { desc = "Toggle LocList" })
-
-  map("n", "<leader>xw", function () qf.close('c') end, { desc = "Write QfList" })
-  map("n", "<leader>xr", function () qf.close('c') end, { desc = "Read QfList" })
-  map("n", "<leader>xW", function () qf.close('l') end, { desc = "Write LocList" })
-  map("n", "<leader>xR", function () qf.close('l') end, { desc = "Read LocList" })
-  --map("n", "[v", function () qf.above('visible') end, { desc = "Previous Visible Q/L Item" })
-  --map("n", "]v", function () qf.below('visible') end, { desc = "Next Visible Q/L Item" })
-  map("n", "[q", function () qf.above('c') end, { desc = "Previous QfList Item" })
-  map("n", "]q", function () qf.below('c') end, { desc = "Next QfList Item" })
-  map("n", "[l", function () qf.above('l') end, { desc = "Previous LocList Item" })
-  map("n", "]l", function () qf.below('l') end, { desc = "Next LocList Item" })
-else -- Use native
-  map("n", "<leader>xq", vim.cmd.copen, { desc = "Open QfList" })
-  map("n", "<leader>xc", vim.cmd.cclose, { desc = "Close QfList" })
-  map("n", "<leader>xl", vim.cmd.lopen,{ desc = "Open LocList" })
-  map("n", "<leader>xC", vim.cmd.lclose, { desc = "Close LocList" })
-  map("n", "[q", vim.cmd.cprevious, { desc = "Previous QfList Item" })
-  map("n", "]q", vim.cmd.cnext, { desc = "Next QfList Item" })
-  map("n", "[l", vim.cmd.lprevious, { desc = "Previous LocList Item" })
-  map("n", "]l", vim.cmd.lnext, { desc = "Next LocList Item" })
-end
+-- <tab> / <S-Tab> to mark
+-- <A-q> / <C-q> to update list (marked / unmarked)
+map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "Down-select from QfList" }) -- same as <leader>sq
+map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "Down-select from LocList" })   -- same as <leader>sl
+map("n", "<leader>xh", "<cmd>Telescope quickfixhistory<cr>", { desc = "Pick QfList from its History" })
+-- map("n", "<leader>xq", vim.cmd.copen, { desc = "Open QfList" })
+-- map("n", "<leader>xc", vim.cmd.cclose, { desc = "Close QfList" })
+-- map("n", "<leader>xl", vim.cmd.lopen,{ desc = "Open LocList" })
+-- map("n", "<leader>xC", vim.cmd.lclose, { desc = "Close LocList" })
+map("n", "<leader>xq", vim.cmd.copen, { desc = "which_key_ignore" })
+map("n", "<leader>xc", vim.cmd.cclose, { desc = "which_key_ignore" })
+map("n", "<leader>xl", vim.cmd.lopen,{ desc = "which_key_ignore" })
+map("n", "<leader>xC", vim.cmd.lclose, { desc = "which_key_ignore" })
+map("n", "[q", vim.cmd.cprevious, { desc = "Previous QfList Item" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next QfList Item" })
+map("n", "[l", vim.cmd.lprevious, { desc = "Previous LocList Item" })
+map("n", "]l", vim.cmd.lnext, { desc = "Next LocList Item" })
