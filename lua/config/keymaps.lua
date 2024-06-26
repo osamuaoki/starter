@@ -228,7 +228,7 @@ end, { desc = "Python REPL (.)" })
 -- <tab> / <S-Tab> to mark
 -- <A-q> / <C-q> to update list (marked / unmarked)
 map("n", "<leader>xt", "<cmd>Telescope quickfix<cr>", { desc = "Down-select from QfList" }) -- same as <leader>sq
-map("n", "<leader>xT", "<cmd>Telescope locfix<cr>", { desc = "Down-select from LocList" })   -- same as <leader>sl
+map("n", "<leader>xT", "<cmd>Telescope loclist<cr>", { desc = "Down-select from LocList" })   -- same as <leader>sl
 map("n", "<leader>xh", "<cmd>Telescope quickfixhistory<cr>", { desc = "Pick QfList from its History" })
 -- map("n", "<leader>xq", vim.cmd.copen, { desc = "Open QfList" })
 -- map("n", "<leader>xc", vim.cmd.cclose, { desc = "Close QfList" })
