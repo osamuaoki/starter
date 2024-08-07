@@ -1,0 +1,15 @@
+-- if true then return {} end
+-- https://github.com/tris203/precognition.nvim
+return {
+  "tris203/precognition.nvim",
+  config = { startVisible =  false },
+}
+-- -- Toggle precognition (Add this in config/keymaps.lua)
+-- map("n", "<leader>uP", function()
+--   if require("precognition").toggle() then
+--     vim.notify("Precognition enabled")
+--   else
+--     vim.notify("Precognition disabled")
+--   end
+-- end, { desc = "Toggle Precognition" })
+--

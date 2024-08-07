@@ -30,6 +30,9 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
+  -- Pick "colorscheme" from blue darkblue default delek desert elflord evening
+  -- habamax industry koehler lunaperche morning murphy pablo peachpuff quiet ron
+  -- shine slate torte zellner
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
@@ -39,7 +42,7 @@ require("lazy").setup({
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
-        "gzip",
+        -- "gzip", -- Debian needs gz file.  So don't disable
         -- "matchit",
         -- "matchparen",
         -- "netrwPlugin",
@@ -51,3 +54,7 @@ require("lazy").setup({
     },
   },
 })
+
+-- -- Load quicklist support package
+-- vim.cmd.packadd { "cfilter" }
+

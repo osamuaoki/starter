@@ -1,0 +1,14 @@
+-- not used since I like classic
+if true then return {} end
+return {
+  {
+    "folke/which-key.nvim",
+    opts = {
+      ---@type false | "classic" | "modern" | "helix"
+      --preset = "classic",
+      preset = "modern",
+      --preset = "helix",
+      --preset = false,
+    },
+  },
+}
