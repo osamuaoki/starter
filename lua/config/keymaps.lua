@@ -30,3 +30,46 @@ map("n", "<leader>uu", function() end, { desc = "which_key_ignore" }) -- hidden
 
 -- LazyExtras '<leader>uX' make these accessible without dashboard screen
 map("n", "<leader>uX", "<cmd> LazyExtras <cr>", { desc = "Lazy Extras †" })
+
+--- Set the indent and tab related numbers (local to buffer)
+map("n", "<leader>u<tab>", function()
+  local ok, input = pcall(vim.fn.input, "Set Tabstop Value (ts sts sw): ")
+  if ok then
+    local indent = tonumber(input) or 8 -- default ts = 8 / noet
+    indent = math.abs((indent == 0) and 8 or indent) -- 0 not allowed for tabstop
+    vim.bo.tabstop = indent
+    vim.bo.softtabstop = indent
+    vim.bo.shiftwidth = indent
+    vim.notify(("Tabstop = %d †"):format(vim.bo.tabstop))
+  end
+  wk_update_desc("<leader>ut", function()
+    return ("Tabstop = %d †"):format(vim.bo.tabstop)
+  end)
+end, { desc = ("Tabstop = %d †"):format(vim.bo.tabstop) })
+
+-- Set completion
+map(
+  "n",
+  "<leader>uB",
+  function()
+    if vim.b.completion ~= false then
+      -- nil and true (active completion)
+      vim.b.completion = false
+    -- vim.notify("Disabled completion †")
+    else
+      vim.b.completion = true
+      -- vim.notify("Enabled completion †")
+    end
+    if vim.b.completion ~= false then
+      wk_update_desc("<leader>uB", function()
+        return "Disable completion †"
+      end)
+    else
+      wk_update_desc("<leader>uB", function()
+        return "Enable completion †"
+      end)
+    end
+  end,
+  -- { desc = desc_cmp, icon = icon_cmp, color = color_cmp, }
+  { desc = "XXXXXXX completion †" }
+)
