@@ -145,3 +145,10 @@ opt.viminfo = "!,'100,<5000,s100,h" -- :h 'vi -- bigger copy buffer etc.
 -- ===========================================================================
 vim.g.minipairs_disable = true -- mini.pair: no input pairs '' "" () [] {} ``
 
+-- ===========================================================================
+-- Initialize via lua module variables with user custom autocmds
+-- ===========================================================================
+vim.g.tailspace = true -- lua/config/{autocmds,keymap}.lua
+vim.g.tailspace_debug = false -- lua/config/autocmds
+vim.g.completion_disable = false -- lua/plugins/blink.lua (always)
+
