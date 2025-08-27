@@ -129,3 +129,19 @@ end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+-- ===========================================================================
+-- Initialize via Vim options (not set by LazyVim)
+-- ===========================================================================
+opt.background = "dark" -- To be safe side
+opt.errorbells = false -- :h 'eb
+opt.listchars = { eol = "¶", tab = "⇄ ", extends = "↦", precedes = "↤", nbsp = "␣" }
+opt.spell = true -- :h 'spell
+opt.visualbell = false -- :h 'vb
+opt.viminfo = "!,'100,<5000,s100,h" -- :h 'vi -- bigger copy buffer etc.
+
+-- ===========================================================================
+-- Initialize via lua module variables (not set by LazyVim)
+-- ===========================================================================
+vim.g.minipairs_disable = true -- mini.pair: no input pairs '' "" () [] {} ``
+
