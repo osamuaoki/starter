@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- LazyVim auto format
-vim.g.autoformat = true
+vim.g.autoformat = false
 
 -- Snacks animations
 -- Set to `false` to globally disable all snacks animations
@@ -86,10 +86,10 @@ opt.laststatus = 3 -- global statusline
 opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true -- Show some invisible characters (tabs...
 opt.mouse = "a" -- Enable mouse mode
-opt.number = true -- Print line number
+opt.number = false -- Print line number
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
+opt.relativenumber = false -- Relative line numbers
 opt.ruler = false -- Disable the default ruler
 opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
@@ -101,14 +101,14 @@ opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- Don't ignore case with capitals
 opt.smartindent = true -- Insert indents automatically
-opt.spelllang = { "en" }
+opt.spelllang = "en_us,cjk" -- :h 'spl -- english spell, ignore CJK
 opt.splitbelow = true -- Put new windows below current
 opt.splitkeep = "screen"
 opt.splitright = true -- Put new windows right of current
 opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 opt.tabstop = 2 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
-opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+opt.timeoutlen = vim.g.vscode and 1000 or 200 -- 200 ms QMK-like to trigger which-key quicker than default (nvim: 1000, lazyvim: 300)
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
