@@ -62,14 +62,14 @@ map(
     end
     if vim.b.completion ~= false then
       wk_update_desc("<leader>uB", function()
-        return "Disable completion †"
+        return "Disable Completion †"
       end)
     else
       wk_update_desc("<leader>uB", function()
-        return "Enable completion †"
+        return "Enable Completion †"
       end)
     end
   end,
   -- { desc = desc_cmp, icon = icon_cmp, color = color_cmp, }
-  { desc = "XXXXXXX completion †" }
+  { desc = (vim.b.completion ~= false and "Disable Completion †" or "Enable Completion †") }
 )
