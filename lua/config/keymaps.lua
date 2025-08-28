@@ -47,6 +47,18 @@ map("n", "<leader>u<tab>", function()
   end)
 end, { desc = ("Tabstop = %d †"):format(vim.bo.tabstop) })
 
+-- Set tailspace
+map("n", "<leader>ut", function()
+  if vim.g.tailspace ~= false then
+    vim.g.tailspace = false
+  else
+    vim.g.tailspace = true
+  end
+  wk_update_desc("<leader>ut", function()
+    return (vim.g.tailspace and "Disable Tailspace †" or "Enable Tailspace †")
+  end)
+end, { desc = (vim.g.tailspace ~= false and "Disable Tailspace †" or "Enable Tailspace †") })
+
 -- Set completion
 map(
   "n",
