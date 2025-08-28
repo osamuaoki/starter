@@ -151,4 +151,5 @@ vim.g.minipairs_disable = true -- mini.pair: no input pairs '' "" () [] {} ``
 vim.g.tailspace = true -- lua/config/{autocmds,keymap}.lua
 vim.g.tailspace_debug = false -- lua/config/autocmds
 vim.g.completion_disable = false -- lua/plugins/blink.lua (always)
+vim.g.precognition_disable = false -- lua/plugins/precognition.lua (always)
 
