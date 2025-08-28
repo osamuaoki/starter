@@ -40,3 +40,40 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end,
 })
+
+-- update which-key description (no icon change)
+local wk_update_desc = function(lhs, desc_fn)
+  local ok, wk = pcall(require, "which-key")
+  if ok then
+    wk.add({
+      {
+        lhs,
+        desc = desc_fn,
+      },
+    })
+  end
+end
+
+-- When starting to edit a new buffer
+vim.api.nvim_create_autocmd("BufRead", {
+  callback = function()
+    -- vim.notify("BufRead")
+    vim.b.completion = vim.g.completion_disable ~= true
+  end,
+})
+
+-- After entering a new or existing buffer
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    -- vim.notify("BufEnter")
+    if vim.b.completion ~= false then
+      wk_update_desc("<leader>uB", function()
+        return "Disable Completion †"
+      end)
+    else
+      wk_update_desc("<leader>uB", function()
+        return "Enable Completion †"
+      end)
+    end
+  end,
+})
